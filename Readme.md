@@ -19,7 +19,7 @@ def navigation():
     )
 ```
 
-Stag has no dependencies, and works with Python 2.7+ and 3.3+. It is not considered production-ready yet.
+Stag has no dependencies (except py.test for testing), and works with Python 2.7+ and 3.3+. It is not considered production-ready yet.
 
 
 Motivation
