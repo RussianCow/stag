@@ -1,0 +1,7 @@
+# Python
+build/
+*.pyc
+
+# IntelliJ IDEA
+.idea/
+*.iml
