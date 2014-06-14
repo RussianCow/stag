@@ -4,18 +4,29 @@ Stag: HTML templates with pure Python
 Stag is a Python library that allows you to output HTML by creating a sort of tree in pure Python. Instead of generating HTML with a text-based templating solution like Jinja, we use simple Python objects. A quick example:
 
 ```python
-def navigation():
-    links = [
-        ('Home', '/'),
-        ('Blog', '/blog')
-    ]
-    return ul(
-        {'id': 'navigation'},
-        [
-            li(
-                a({'href': link[1]}, link[0])
-            ) for link in links
-        ]
+def template(content, nav_links):
+    return render(
+        html(
+            head(
+                title("Stag is the best!"),
+                script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+            ),
+            body(
+                ul(
+                    {'id': 'navigation'},
+                    [
+                        li(
+                            a({'href': link.href}, link.text)
+                        ) for link in nav_links
+                    ]
+                ),
+                h2("Hello, comrade!"),
+                div(
+                    {'id': 'content'},
+                    content
+                )
+            )
+        )
     )
 ```
 
