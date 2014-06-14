@@ -1,3 +1,4 @@
+import pytest
 
 from stag import render
 from stag.tags import *
@@ -22,3 +23,9 @@ def test_attributes():
 def test_classes():
     assert str(div({'class': 'main'})) == str(div(class_='main')) == u'<div class="main"></div>'
     assert str(div(classes=['content', 'wide'])) == u'<div class="content wide"></div>'
+
+
+def test_self_closing():
+    assert str(img(class_='main')) == u'<img class="main">'
+    with pytest.raises(ValueError):
+        img(p())

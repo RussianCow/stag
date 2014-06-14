@@ -7,6 +7,7 @@ from inspect import isgenerator
 
 class Element(object):
     tag = ''
+    self_closing = False
 
     def __init__(self, *children, **attrs):
         if children and isinstance(children[0], dict):
@@ -35,15 +36,20 @@ class Element(object):
             body.write(u'<%s %s>' % (self.tag, attr_string))
         else:
             body.write(u'<%s>' % self.tag)
-        for child in self.children:
-            body.write(str(child))
-        body.write(u'</%s>' % self.tag)
+
+        if not self.self_closing:
+            # If it's a self-closing tag (<img>, <hr>, etc) there can't be any children anyway
+            for child in self.children:
+                body.write(str(child))
+            body.write(u'</%s>' % self.tag)
         return body.getvalue()
 
     def __str__(self):
         return self.__unicode__()
 
     def add_children(self, children):
+        if self.self_closing and children:
+            raise ValueError("Self-closing tags can't have children.")
         if children and isgenerator(children[0]):
             children = children[0]
         for child in children:
