@@ -173,3 +173,11 @@ def template(content):
 ```
 
 ...where `navigation`, `heading`, and `footer` are also functions that return partial templates. And since everything is just a function, you can pass things around as arguments to dynamically generate these partials, without relying on global template variables like Jinja makes you do.
+
+
+Roadmap
+-------
+
+Right now, the goal is to get Stag as stable as possible and to cover all (or most) use cases for it. A short-term goal is to make the test suite more comprehensive. Eventually, I'd like for Stag to support pretty-fying the output, as right now it outputs all the HTML condensed into one line.
+
+Other than that, the goal is to actually get some users!
