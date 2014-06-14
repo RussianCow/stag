@@ -100,20 +100,20 @@ For convenience, Stag supports an attribute called `classes` that allows you to 
 div(classes=['inner', 'wide']) # <div class="inner wide"></div>
 ```
 
-To turn your template into a string for output, simply call `str` on it:
-
-```python
-return str(my_template())
-```
-
-Or optionally use Stag's helper `render` function:
+To turn your template into a string for output, use Stag's helper `render` function:
 
 ```python
 from stag import render
 return render(my_template())
 ```
 
-The two examples are almost equivalent, except `render` includes a doctype by default. This can be overridden with a keyword:
+Or you can just call `str` on it:
+
+```python
+return str(my_template())
+```
+
+`render` includes a doctype by default. This can be overridden with a keyword argument:
 
 ```python
 return render(my_template(), doctype='<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">')
