@@ -144,3 +144,32 @@ def test_post():
 ```
 
 This way, we don't have to write weird workarounds using string checks and other approximations--we can test the output directly! You can see how testing complex functions can be so much easier than testing complex Jinja/Django templates.
+
+
+Composition
+-----------
+
+Since templates are just functions, it's not much easier (and encouraged!) to break your templates down into little pieces. For instance, your general `template` function might look like this:
+
+```python
+def template(content):
+    return render(
+        html(
+            head(
+                title("My composition example"),
+                script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+            ),
+            body(
+                navigation(),
+                heading(),
+                div(
+                    {'id': 'content'},
+                    content
+                ),
+                footer()
+            )
+        )
+    )
+```
+
+...where `navigation`, `heading`, and `footer` are also functions that return partial templates. And since everything is just a function, you can pass things around as arguments to dynamically generate these partials, without relying on global template variables like Jinja makes you do.
