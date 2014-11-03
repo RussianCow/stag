@@ -160,7 +160,7 @@ This way, we don't have to write weird workarounds using string checks and other
 Composition
 -----------
 
-Since templates are just functions, it's not much easier (and encouraged!) to break your templates down into little pieces. For instance, your general `template` function might look like this:
+Since templates are just functions, it's now much easier (and encouraged!) to break your templates down into little pieces. For instance, your general `template` function might look like this:
 
 ```python
 def template(content):
