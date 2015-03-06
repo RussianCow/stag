@@ -20,18 +20,21 @@ class ElementRenderer(object):
     def __init__(self, root, indent=0):
         self.root = root
         self.indent_spaces = indent
-        self.indent_level = 0
 
     def render(self):
         body = StringIO()
         stack = []
         tree = [[self.root]]
+        indent_level = 0
 
         while True:
             siblings = tree[-1]
             if siblings:
                 el = siblings.pop(0)
                 stack.append(el)
+
+                if indent_level:
+                    body.write('\n' + self.indent(indent_level))
 
                 if is_string(el):
                     body.write(el)
@@ -47,15 +50,21 @@ class ElementRenderer(object):
                     else:
                         body.write('>')
                     tree.append(el.children)
+                    indent_level += 1
             else:
                 tree.pop()
                 if not stack:
                     break
                 el = stack.pop()
                 if not is_string(el) and not el.self_closing:
+                    indent_level -= 1
+                    body.write('\n' + self.indent(indent_level))
                     body.write('</{}>'.format(el.tag))
 
         return body.getvalue()
+
+    def indent(self, level):
+        return ' ' * level * self.indent_spaces
 
 
 def is_string(val):
