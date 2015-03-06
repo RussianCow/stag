@@ -118,12 +118,6 @@ from stag import render
 return render(my_template())
 ```
 
-Or you can just call `str` on it:
-
-```python
-return str(my_template())
-```
-
 `render` includes a doctype by default. This can be overridden with a keyword argument:
 
 ```python
