@@ -29,6 +29,10 @@ class Element(object):
         self.add_children(children)
         return self
 
+    def __repr__(self):
+        attr_string = ''.join(' {}="{}"'.format(key, val) for key, val in self.attrs.items() if val)
+        return '<{}{}>'.format(self.tag, attr_string)
+
     def add_children(self, children):
         if self.self_closing and children:
             raise ValueError("Self-closing tags can't have children.")
