@@ -46,5 +46,9 @@ def test_self_closing():
         img(p())
 
 
+def test_integration():
+    assert render_html(html(head(), body())) == '<!DOCTYPE html>\n<html><head></head><body></body></html>'
+
+
 def render_basic(tag):
     return render(tag)

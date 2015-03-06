@@ -27,7 +27,7 @@ class ElementRenderer(object):
         stack = []
         tree = [[self.root]]
 
-        while tree:
+        while True:
             siblings = tree[-1]
             if siblings:
                 el = siblings.pop(0)
@@ -35,6 +35,7 @@ class ElementRenderer(object):
 
                 if is_string(el):
                     body.write(el)
+                    tree.append([])
                 else:
                     body.write('<{}'.format(el.tag))
                     if el.attrs:
@@ -45,10 +46,11 @@ class ElementRenderer(object):
                         body.write(' />')
                     else:
                         body.write('>')
-                        if el.children:
-                            tree.append(el.children)
+                    tree.append(el.children)
             else:
                 tree.pop()
+                if not stack:
+                    break
                 el = stack.pop()
                 if not is_string(el) and not el.self_closing:
                     body.write('</{}>'.format(el.tag))
