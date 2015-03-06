@@ -29,24 +29,6 @@ class Element(object):
         self.add_children(children)
         return self
 
-    def __unicode__(self):
-        body = StringIO()
-        if self.attrs:
-            attr_string = u' '.join(u'{}="{}"'.format(key, val) for key, val in self.attrs.items() if val)
-            body.write(u'<{} {}>'.format(self.tag, attr_string))
-        else:
-            body.write(u'<{}>'.format(self.tag))
-
-        if not self.self_closing:
-            # If it's a self-closing tag (<img>, <hr>, etc) there can't be any children anyway
-            for child in self.children:
-                body.write(str(child))
-            body.write(u'</{}>'.format(self.tag))
-        return body.getvalue()
-
-    def __str__(self):
-        return self.__unicode__()
-
     def add_children(self, children):
         if self.self_closing and children:
             raise ValueError("Self-closing tags can't have children.")
