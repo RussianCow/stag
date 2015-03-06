@@ -118,7 +118,7 @@ from stag import render
 return render(my_template())
 ```
 
-`render` includes a doctype by default. This can be overridden with a keyword argument:
+`render` includes the HTML5 doctype by default. This can be overridden with a keyword argument:
 
 ```python
 return render(my_template(), doctype='<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">')
