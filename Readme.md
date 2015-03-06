@@ -148,7 +148,7 @@ def test_post():
     )
 ```
 
-This way, we don't have to write weird workarounds using string checks and other approximations--we can test the output directly! You can see how testing complex functions can be so much easier than testing complex Jinja/Django templates.
+This way, we don't have to use string checks and other approximations to test our templates--we can test the output directly! You can see how testing complex functions with Stag can be so much easier than testing complex Jinja/Django templates.
 
 
 Composition
@@ -183,6 +183,6 @@ def template(content):
 Roadmap
 -------
 
-Right now, the goal is to get Stag as stable as possible and to cover all (or most) use cases for it. A short-term goal is to make the test suite more comprehensive. Eventually, I'd like for Stag to support pretty-fying the output, as right now it outputs all the HTML condensed into one line.
+Right now, the long-term goal is to get Stag as stable as possible and to cover all (or most) use cases for it. A short-term goal is to make the test suite more comprehensive. Eventually, I'd like for Stag to support pretty-fying the output, as right now it outputs all the HTML condensed into one line.
 
 Other than that, the goal is to actually get some users!
