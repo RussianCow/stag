@@ -32,16 +32,16 @@ class Element(object):
     def __unicode__(self):
         body = StringIO()
         if self.attrs:
-            attr_string = u' '.join(u'%s="%s"' % (key, val) for key, val in self.attrs.items() if val)
-            body.write(u'<%s %s>' % (self.tag, attr_string))
+            attr_string = u' '.join(u'{}="{}"'.format(key, val) for key, val in self.attrs.items() if val)
+            body.write(u'<{} {}>'.format(self.tag, attr_string))
         else:
-            body.write(u'<%s>' % self.tag)
+            body.write(u'<{}>'.format(self.tag))
 
         if not self.self_closing:
             # If it's a self-closing tag (<img>, <hr>, etc) there can't be any children anyway
             for child in self.children:
                 body.write(str(child))
-            body.write(u'</%s>' % self.tag)
+            body.write(u'</{}>'.format(self.tag))
         return body.getvalue()
 
     def __str__(self):
