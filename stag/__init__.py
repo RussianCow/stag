@@ -56,25 +56,6 @@ class ElementRenderer(object):
         return body.getvalue()
 
 
-def tag_to_string(tag):
-    if is_string(tag):
-        return tag
-
-    body = StringIO()
-    if tag.attrs:
-        attr_string = ' '.join('{}="{}"'.format(key, val) for key, val in tag.attrs.items() if val)
-        body.write('<{} {}>'.format(tag.tag, attr_string))
-    else:
-        body.write('<{}>'.format(tag.tag))
-
-    if not tag.self_closing:
-        # If it's a self-closing tag (<img>, <hr>, etc) there can't be any children anyway
-        for child in tag.children:
-            body.write(tag_to_string(child))
-        body.write('</{}>'.format(tag.tag))
-    return body.getvalue()    
-
-
 def is_string(val):
     if type('') == str:
         # Python 3
